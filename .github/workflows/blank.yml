@@ -14,6 +14,6 @@ jobs:
     - name: build image
       run: |
         sudo apt-get -y install debootstrap
-        sudo debootstrap focal focal > /dev/null
+        sudo debootstrap  --variant=minbase --arch=amd64  focal focal > /dev/null
         sudo tar -C focal -c . | docker import - focal
         docker images
