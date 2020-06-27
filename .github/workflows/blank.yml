@@ -11,9 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: build image
       run: |
+        sudo apt-get -y debootstrap
         sudo debootstrap focal focal > /dev/null
         sudo tar -C focal -c . | docker import - focal
         docker images
