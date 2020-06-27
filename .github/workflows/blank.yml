@@ -13,7 +13,7 @@ jobs:
 
     - name: build image
       run: |
-        sudo apt-get -y debootstrap
+        sudo apt-get -y install debootstrap
         sudo debootstrap focal focal > /dev/null
         sudo tar -C focal -c . | docker import - focal
         docker images
