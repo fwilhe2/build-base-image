@@ -11,9 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: build image
+    - name: install debootstrap
       run: |
         sudo apt-get -y install debootstrap
-        sudo debootstrap  --variant=minbase --arch=amd64  focal focal > /dev/null
-        sudo tar -C focal -c . | docker import - focal
+    - name: build image
+      run: |
+        sudo debootstrap  --variant=minbase --arch=amd64  buster buster > /dev/null
+        sudo tar -C buster -c . | docker import - buster
+    - name: docker images
+      run: |
         docker images
+    - name: view fs
+      run: |
+        docker run --rm buster find /
